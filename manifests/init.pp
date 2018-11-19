@@ -468,7 +468,7 @@ class docker_distribution (
   contain ::docker_distribution::config
   contain ::docker_distribution::service
 
-  Class['::docker_distribution::install'] ->
-  Class['::docker_distribution::config'] ~>
-  Class['::docker_distribution::service']
+  Class['::docker_distribution::install']
+  -> Class['::docker_distribution::config']
+  -> Class['::docker_distribution::service']
 }

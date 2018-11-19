@@ -15,15 +15,15 @@ class docker_distribution::config {
       owner  => 'root',
       group  => 'root',
       mode   => '0755',
-    } ->
-    file { '/etc/systemd/system/docker-distribution.service.d/journald.conf':
+    }
+    -> file { '/etc/systemd/system/docker-distribution.service.d/journald.conf':
       ensure  => file,
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
       content => template("${module_name}/journald.conf.erb"),
-    } ~>
-    exec { 'systemctl-daemon-reload docker_distribution':
+    }
+    -> exec { 'systemctl-daemon-reload docker_distribution':
       refreshonly => true,
       command     => '/usr/bin/systemctl daemon-reload',
     }
